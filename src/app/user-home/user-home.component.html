@@ -1,0 +1,72 @@
+<!-- toolbar for user identification -->
+<mat-toolbar style="background-color: rgb(9, 55, 102);color: white;">
+    <mat-icon><span class="material-symbols-outlined">
+        library_books
+        </span></mat-icon>
+    <h1 style="font-family:cursive;font-size: x-large;"><b>&nbsp;Book Contribution Portal</b></h1>
+    <span class="spacerset"></span>
+ <p style="color: white;font-family: monospace;font-size:x-large;">
+    <mat-icon style="vertical-align: middle;">
+        <span class="material-icons">
+            account_circle
+            </span>     
+      </mat-icon>
+      Username  
+ </p>
+
+    <span class="spacer"></span>
+        <a>
+            <p style="color: white;font-family: monospace;font-size:x-large;">Logout
+            <mat-icon style="color: white;vertical-align: middle;">
+                <span class="material-icons">
+                    power_settings_new
+                </span>                
+            </mat-icon>
+        </p>
+        </a>  
+</mat-toolbar>
+
+<div class="row">
+
+    <!-- form for adding books -->
+    <div class="col-md-6">
+        <div class="panel panel-info pull-left " style="height: 100%;width: 90%; margin-top: 8%; margin-left: 10%;">
+    
+            <div class="panel-heading" style="font-size:large;font-family:Verdana, Geneva, Tahoma, sans-serif; text-align: center;">
+              &nbsp;Add your Contributions</div>
+            <div class="panel-body" style="text-align:center;">
+            <div style="height: 30px;"></div>
+           <app-addcontribution></app-addcontribution>
+            </div>
+           </div>
+
+    </div>
+   
+    <!-- for viewing user contributions -->
+    <div class="col-md-6">
+        <div class="panel panel-info pull-right" style="height: 100%;width: 90%; margin-right: 5%;margin-top: 8%; ">
+    
+            <div class="panel-heading " style="font-size:large;font-family:Verdana, Geneva, Tahoma, sans-serif; text-align: center;">
+              
+             &nbsp;Your Contributions</div>
+            <div class="panel-body">
+          
+            </div>
+           </div>
+
+    </div>
+
+</div>
+<hr>
+<!-- for displaying entire library -->
+<div class="row">
+    <div class="panel panel-info" style="height: 100%;width: 91%;margin-left: 5.6%;">
+    
+        <div class="panel-heading " style="font-size:large;font-family:Verdana, Geneva, Tahoma, sans-serif; text-align: center;">
+          
+         &nbsp;Complete Library Contributions</div>
+        <div class="panel-body">
+      
+        </div>
+       </div>
+</div>
