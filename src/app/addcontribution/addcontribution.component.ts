@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { BookcontributionserviceService } from '../bookcontributionservice.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { BookcontributionserviceService } from '../bookcontributionservice.servi
 })
 export class AddcontributionComponent implements OnInit {
 
-  constructor(public service: BookcontributionserviceService) { }
+  constructor(public service: BookcontributionserviceService,private router:Router) { }
 
   ngOnInit(): void {
     this.resetForm();
@@ -26,10 +27,13 @@ export class AddcontributionComponent implements OnInit {
       bookid:0,
       bookname: '',
       bookcategory: '',
-      copies: '',
       bookimage: null
      
 
     }
+  }
+
+  gouserhome(){
+    this.router.navigateByUrl('/userhome');
   }
 }

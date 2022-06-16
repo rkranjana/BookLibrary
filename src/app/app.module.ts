@@ -10,12 +10,14 @@ import { UserHomeComponent } from './user-home/user-home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddcontributionComponent } from './addcontribution/addcontribution.component';
 import { FormsModule } from '@angular/forms';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserHomeComponent,
-    AddcontributionComponent
+    AddcontributionComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

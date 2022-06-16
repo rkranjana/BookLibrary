@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-home',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-home.component.css']
 })
 export class UserHomeComponent implements OnInit {
-
-  constructor() { }
+   libraryimage:string="assets/images/libraryimage.jpeg";
+  constructor( private router:Router) { }
 
   ngOnInit(): void {
+  }
+
+  addContribution(){
+    this.router.navigateByUrl('/addcontribution');
   }
 
 }

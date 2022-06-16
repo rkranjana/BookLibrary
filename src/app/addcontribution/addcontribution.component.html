@@ -1,42 +1,60 @@
-<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
-    <input type="hidden" name="bookid" [value]="service.formDetail.bookid">
-    <!-- for book name -->
-    <div class="form-group">
-        <input name="bookname" #bookname="ngModel" [(ngModel)]="service.formDetail.bookname" placeholder="Name of Book"  required style="height:40px;width:47%;border-color: rgb(135, 192, 250);color:rgb(9, 55, 102) ;">
+<div  [style.background-image]="'url(/assets/images/book03.PNG'" style="background-size:cover ;width: 100%;height: 100%;overflow:hidden;">
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-info " style="height: 100%;width: 90%; margin-top: 12%;margin-left: 60%;">
+              
+            <div class="panel-heading" style="text-align:left;height:1.5px;border-bottom: none;">
+                <a (click)="gouserhome()">
+                    
+                 <mat-icon>home</mat-icon>
+                </a></div> 
+
+
+            <div class="panel-heading" style="font-size:large;font-family:Verdana, Geneva, Tahoma, sans-serif; text-align: center;border-top: none;">
+              &nbsp;Add your Contributions</div>
+            <div class="panel-body" style="text-align:center;">
+            <div style="height: 30px;"></div>
+            <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+                <input type="hidden" name="bookid" [value]="service.formDetail.bookid">
+                <!-- for book name -->
+                <div class="form-group">
+                    <input name="bookname" #bookname="ngModel" [(ngModel)]="service.formDetail.bookname" placeholder="Name of Book"  required style="height:40px;width:47%;border-color: rgb(135, 192, 250);color:rgb(9, 55, 102) ;">
+                </div>
+                <hr> 
+                 <!-- for book category -->
+                <div class="form-group">
+                    <select  class='select-option'name="bookcategory" #bookcategory="ngModel" [(ngModel)]="service.formDetail.bookcategory"  style="height:40px;width:47%;border-color: rgb(135, 192, 250);color:rgb(9, 55, 102) ;" required >
+                        <option class='option' value="" disabled style="color: rgb(9, 55, 102);">Category</option>
+                        <option class='option'  value="Novel">Novel</option>
+                        <option class='option'  value="General">General</option>
+                        <option class='option'  value="Others">Others</option>
+                    </select>
+                    </div>
+                
+                <hr> 
+              <!-- for image upload-->
+                <div class="form-group ">
+                <p style="color:rgb(9, 55, 102) ;font-family: cursive;">*Add image of book</p>
+                 <input name="bookimage" type="file"  #bookimage="ngModel" [(ngModel)]="service.formDetail.bookimage"  style="height:40px;width:50%;border-color: rgb(135, 192, 250);color:rgb(9, 55, 102) ;margin-left: 35%;" required>
+                 
+                <hr>
+                </div>
+                 <!-- submit button -->
+                <div class="form-group">
+                    <button class="btn btn-primary btn-block" type="submit" style="width: 20%;margin-left: 40%;" [disabled]="form.invalid">Add</button>
+                </div>
+             
+            </form>
+            
+            </div>
+           </div>
     </div>
-    <hr> 
-    <div class="row" style="margin-left:23.5%;">
-        <div class="col-md-4">
-                    <!-- for book category -->
-        <div class="form-group">
-        <select  class='select-option'name="bookcategory" #bookcategory="ngModel" [(ngModel)]="service.formDetail.bookcategory"  style="height:40px;width:100%;border-color: rgb(135, 192, 250);color:rgb(9, 55, 102) ;" required >
-            <option class='option' value="" disabled style="color: rgb(9, 55, 102);">Category</option>
-            <option class='option'  value="Novel">Novel</option>
-            <option class='option'  value="General">General</option>
-            <option class='option'  value="Others">Others</option>
-        </select>
-        </div>
-        </div>
-        <div class="col-md-4">
-              <!-- for number of copies-->
-        <div class="form-group">
-        <input name="copies" type="number" min="1" max="5"  #copies="ngModel" [(ngModel)]="service.formDetail.copies" placeholder="No. of copies"  required  style="height:40px;width:100%;border-color: rgb(135, 192, 250);color:rgb(9, 55, 102) ;">
-        </div>
-        </div>
-    </div>
-   
-    
-    <hr> 
-  <!-- for image upload-->
-    <div class="form-group ">
-    <p style="color:rgb(9, 55, 102) ;font-family: cursive;">*Add image of book</p>
-     <input name="bookimage" type="file"  #bookimage="ngModel" [(ngModel)]="service.formDetail.bookimage"  style="height:40px;width:50%;border-color: rgb(135, 192, 250);color:rgb(9, 55, 102) ;margin-left: 35%;" required>
-     
-    <hr>
-    </div>
-     <!-- submit button -->
-    <div class="form-group">
-        <button class="btn btn-primary btn-block" type="submit" style="width: 20%;margin-left: 40%;" [disabled]="form.invalid">Add</button>
-    </div>
- 
-</form>
+</div>
+</div>
+
+
+
+
+
+
+
