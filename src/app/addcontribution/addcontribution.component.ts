@@ -27,6 +27,7 @@ export class AddcontributionComponent implements OnInit {
       bookid:0,
       bookname: '',
       bookcategory: '',
+      bookdetail:'',
       bookimage: null
      
 

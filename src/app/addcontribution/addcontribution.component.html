@@ -1,7 +1,7 @@
 <div  [style.background-image]="'url(/assets/images/book03.PNG'" style="background-size:cover ;width: 100%;height: 100%;overflow:hidden;">
 <div class="row">
     <div class="col-md-6">
-        <div class="panel panel-info " style="height: 100%;width: 90%; margin-top: 12%;margin-left: 60%;">
+        <div class="panel panel-info " style="height: 100%;width: 90%; margin-top: 5%;margin-left: 60%;">
               
             <div class="panel-heading" style="text-align:left;height:1.5px;border-bottom: none;">
                 <a (click)="gouserhome()">
@@ -30,7 +30,9 @@
                         <option class='option'  value="Others">Others</option>
                     </select>
                     </div>
-                
+                <hr>
+                <!--for description of book-->
+                <textarea name="bookdetail" #bookdetail="ngModel" [(ngModel)]="service.formDetail.bookdetail" placeholder="Tell something about the book..."  style="height:60px;width:47%;border-color: rgb(135, 192, 250);color:rgb(9, 55, 102) ;"></textarea>
                 <hr> 
               <!-- for image upload-->
                 <div class="form-group ">
