@@ -1,4 +1,4 @@
-<td class="dashboard pull-right" style="color: rgb(9, 55, 102);font-family:cursive;">
+<td class="dashboard pull-right" style="color: rgb(17, 37, 44);font-family:cursive;">
     Search:&nbsp;<input matInput (keyup)="applyFilter($event)" placeholder="Type something" #input style="color: rgb(9, 55, 102);font-family:cursive;">
 </td>
 <div >
@@ -12,9 +12,17 @@
       
       <ng-container matColumnDef="bookdata">
         <th mat-header-cell *matHeaderCellDef > </th>
-        <td mat-cell *matCellDef="let bk" style="width: 60%;color:rgb(9, 55, 102);"> <h2 style="font-family:Verdana, Geneva, Tahoma, sans-serif;font-size: x-large;margin-top:4%;"><b>{{bk.bookname}}</b></h2><h4 style="font-family:cursive;font-size:medium;color: rgb(0, 0, 0);">Category: {{bk.bookcategory}}<br>Contributer: {{bk.bookdontd}}</h4></td>
+        <td mat-cell *matCellDef="let bk" style="width: 50%;color:rgb(17, 37, 44);"> <h2 style="font-family:'Acme', sans-serif;font-size: x-large;margin-top:4%;"><b>{{bk.bookname}}</b></h2><h4 style="font-family:cursive;font-size:medium;color: rgb(0, 0, 0);">Category: {{bk.bookcategory}}<br>Contributer: {{bk.bookdontd}}</h4></td>
       </ng-container>
   
+      <ng-container matColumnDef="bookview">
+        <th mat-header-cell *matHeaderCellDef  ></th>
+        <td mat-cell *matCellDef="let bk"> <a>View <mat-icon style="vertical-align: middle;height: 15px;width: 15px;font-size: 15px">
+          <span class="material-symbols-outlined">
+            fullscreen
+            </span>
+        </mat-icon></a></td>
+      </ng-container>
    
      
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

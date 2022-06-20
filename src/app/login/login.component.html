@@ -1,19 +1,75 @@
-<div style="overflow:hidden;height:100%;width:100%">
-<div class="panel panel-primary" style="height: 70%;width:20%; margin-top:6%;margin-left: 40%; text-align: center;">
+<div [style.background-image]="'url(/assets/images/booklogin10.PNG'" style="overflow:hidden;height:100%;width:100%;background-size:cover;">
+<div class="panel panel-primary" style="height: 90%;width:30%; margin-top:2.4%;margin-left: 12%; text-align: center;background-color:none;">
     
     <div class="panel-body">
-        <div style="height:30px;"></div>
-        <h1 style="font-family:cursive;font-size: xx-large;color:rgb(9, 55, 102) ;">
-        <mat-icon>
-            <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="bi bi-book" viewBox="0 0 18 18">
-                <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
-              </svg>
+        <div style="height:50px;"></div>
+        <h1 style="font-family: 'Fascinate Inline', cursive;font-size:4em;color:rgb(9, 55, 102) ;">
+        <mat-icon style="vertical-align:auto;height: 45px;width: 45px;font-size: 45px;">
+          <span class="material-symbols-outlined">
+            import_contacts
+            </span>
            </mat-icon> 
           <b>&nbsp;KITAB</b></h1>
 
-          
+          <form [formGroup]="Login"   (ngSubmit)="FormSubmit()">
+            <div class="form-group">
+        
+                <div style="flex-direction: column; flex: 130px;height:50px;background-color: rgb(255, 255, 255);"></div>
+                  <!-- Username -->
+                 <div style="color: rgb(6, 83, 6);font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;text-align: left;margin-left:17.5%;">
+                    <p>  <mat-icon style="vertical-align:middle;">
+                        <span class="material-icons-outlined">
+                            account_circle
+                            </span>
+                           
+                    </mat-icon>
+                   <b>&nbsp;Username:</b></p>
+                 </div>
+                
+                 
+                  <div class="controls">
+                    <input  style= "width: 65%;align-content: center;margin-left: 17.5%;border-color: rgb(114, 161, 114);" type="text" id="Loginid" placeholder="username" class="form-control" formControlName="Userid">
+                  </div>
+    
+                  
+                  <div style="flex-direction: column; flex: 130px;height:35px;background-color: rgb(255, 255, 255);"></div>
+    
+                   <!-- password -->
+    
+                   <div style="color: rgb(6, 83, 6);font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;text-align: left;margin-left:17.5%;">
+                    <p>  <mat-icon style="vertical-align:middle;">
+                        <span class="material-icons">
+                            lock
+                            </span>
+                    </mat-icon>
+                   <b>&nbsp;Password:</b></p>
+                 </div>
+                   
+                   <div class="controls">
+                     <input style= "width: 65%;align-content: center; margin-left: 17.5%;border-color: rgb(114, 161, 114);" type="password" id="key" placeholder="password" class="form-control" formControlName="key">
+                   </div>
+                   <br>
+                   <span style="color:red;" *ngIf="Error"><p style="text-align: center;">{{ErrorMessage}}</p> </span>
+                   <br>
+                  
+                   <button mat-stroked-button color="primary" style="border-color: blue;" type="Submit">Login</button>
+                   <span class="spacer"></span>
+                   <button  mat-stroked-button color="warn" style="border-color:rgba(255, 0, 0, 0.747);margin-left: 4%;" type="reset">Clear</button>
+                  
+                   <div style="flex-direction: column; flex: 130px;height:35px;background-color: rgb(255, 255, 255);"></div>
+              
+    
+                </div>
+            
+              
+        
+           </form>
+
+
+
+
+
            
     </div>
- 
 </div>
 </div>

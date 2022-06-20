@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit {
   {bookid:6,bookname:"World of Knowledge",bookcategory:"General",bookimage:"/assets/images/libraryimage.jpeg", bookdontd:"Mia Mathew"}
 ]
 BookData: BookDisplayData[] =this.bookList
-displayedColumns: string[] = ['bookimage','bookdata' ];
+displayedColumns: string[] = ['bookimage','bookdata','bookview' ];
 dataSource = new MatTableDataSource<BookDisplayData>(this.BookData);
 
 
