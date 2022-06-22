@@ -1,0 +1,107 @@
+<ng-container *ngIf="id=='0'">
+<h4><b>Page not Found</b></h4>
+</ng-container>
+<ng-container *ngIf="id!='0'">
+    <div  [style.background-image]="'url(/assets/images/bookview.PNG'" style="background-size:cover ;width: 100%;height: 100%;overflow:hidden;">
+        <div class="bookview pull-left"> <a (click)="gouserhome()"><mat-icon style="color:white">home</mat-icon></a></div>
+        <!-- panel for image view -->
+        <div class="panel panel-default pull-left " style="height:90%;width: 44%; margin-top: 2.5%; margin-left: 4%;">
+            <div class="panel-body" style="text-align:center;">
+                <ng-container *ngFor="let bk of bookList">
+                    <ng-container *ngIf="bk.bookId==id">
+                        <div class="row">
+                            <img src="{{bk.imageData}}" height="70%" width="95%"> 
+                           
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <h2 style="font-family: 'Potta One', cursive;font-size:xx-large;color: black;"><b>{{bk.bookName}}</b></h2>
+                        </div>
+                        <div class="row">
+                            <h3>{{bk.author}}</h3>
+                        </div>
+                       
+                        <div class="row">
+                           <textarea style="font-family: 'Acme', sans-serif;overflow:scroll;width:100%;height:90px;text-align: center;border-top:none">{{bk.description}}</textarea>
+                        </div>
+                    </ng-container>
+                </ng-container>
+            </div>
+        </div>
+         <!-- panel for details view -->
+        <div class="panel panel-default pull-right " style="height:90%;width: 44%; margin-top: 2.5%; margin-right: 5%;">
+            <div class="panel-body" style="text-align:left;margin-left:5%;">
+                <ng-container *ngFor="let bk of bookList">
+                    <ng-container *ngIf="bk.bookId==id">
+                        <div class="row" style="text-align:center;">
+                            <h3 style="font-family: 'Acme', sans-serif;font-size:large;"><b>Details of Provider:</b></h3>
+                        </div>
+                      
+                        <div class="row">
+                            <h4 style="font-family:'Yanone Kaffeesatz', sans-serif;font-size:large;">Name:&ensp;{{bk.empName}}</h4>
+                        </div>
+                        <div class="row">
+                            <h4 style="font-family:'Yanone Kaffeesatz', sans-serif;font-size:large;">User Id:&ensp;{{bk.empId}}</h4>
+                        </div>
+                        <div class="row">
+                            <h4 style="font-family:'Yanone Kaffeesatz', sans-serif;font-size:large;">Email Id:&ensp;{{bk.emailId}}</h4>
+                        </div>
+                        <hr>
+                        <div class="row" style="text-align:center;">
+                            <h3 style="font-family: 'Acme', sans-serif;font-size:large;"><b>Book Credentials:</b></h3>
+                        </div>
+                        <div class="row">
+                            <h4 style="font-family:'Yanone Kaffeesatz', sans-serif;font-size:large;">Date of Submission:&ensp;{{bk.dateInserted}}</h4>
+                        </div>
+                        <div class="row">
+                            <h4 style="font-family:'Yanone Kaffeesatz', sans-serif;font-size:large;">Current Status:
+                                <ng-container *ngIf="bk.isapproved==0"><span style="color:orange;">&ensp;Pending</span></ng-container>
+                                <ng-container *ngIf="bk.isapproved==1"><span style="color:green;">&ensp;Approved</span></ng-container>
+                                <ng-container *ngIf="bk.isapproved==2"><span style="color:red">&ensp;Rejected</span></ng-container>
+                            </h4>
+                        </div>
+                           <!-- for pending status -->
+                        <ng-container *ngIf="bk.isapproved==0">
+                       
+                        <div class="row" style="text-align:center;">
+                            <h3 style="font-family: 'Acme', sans-serif;font-size:large;"><b>Update Status:</b></h3>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label style="font-family:'Yanone Kaffeesatz', sans-serif;font-size:large;font-weight: 100;">Status:&nbsp;&nbsp;</label>
+                                <select  class='select-option'name="statusid"  [(ngModel)]="statusid"  style="height:40px;width:100%;font-family:'Yanone Kaffeesatz', sans-serif;font-size:large;" required >
+                                    <option class='option' value=0 disabled style="color: rgb(9, 55, 102);">Status</option>
+                                    <option class='option'  value=1>Accept</option>
+                                    <option class='option'  value=2>Reject</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label style="font-family:'Yanone Kaffeesatz', sans-serif;font-size:large;font-weight: 100;">Approved by:&nbsp;&nbsp;</label>
+                                <input  type="text" approver="approver" id="approver"  placeholder="Name" [(ngModel)]="approver" style="height: 40px; width: 100%;font-family:'Yanone Kaffeesatz', sans-serif;font-size:large;">
+                            </div>
+                            
+                        </div>
+                        <div style="height:30px ;"></div>
+                        <div class="row">
+                            <button class="btn btn-block" type="submit" style="width: 20%;margin-left: 40%; border-color:black;background-color: rgb(3, 17, 24);color: white;" [disabled]="statusid==0||approver==''" (click)="updateStatus(statusid,approver)">Update</button>
+                        </div>
+                        </ng-container>
+                     
+                        <!-- for accepted/rejected status -->
+                        <ng-container *ngIf="bk.isapproved==1||bk.isapproved==2">
+                            <div class="row">
+                                <h4 style="font-family:'Yanone Kaffeesatz', sans-serif;font-size:large;">Approved by:&ensp;{{bk.approvedBy}}</h4>
+                            </div>
+                            <div class="row">
+                                <h4 style="font-family:'Yanone Kaffeesatz', sans-serif;font-size:large;">Approved on:&ensp;{{bk.approvedDate}}</h4>
+                            </div>
+                        </ng-container>
+
+                    </ng-container>
+                </ng-container>
+
+            </div>
+        </div>
+
+    </div>
+</ng-container>

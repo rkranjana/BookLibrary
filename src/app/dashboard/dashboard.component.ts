@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -21,7 +22,7 @@ export class DashboardComponent implements OnInit {
 BookData: BookDisplayData[] =this.bookList
 displayedColumns: string[] = ['bookimage','bookdata','bookstatus','bookview', ];
 dataSource = new MatTableDataSource<BookDisplayData>(this.BookData);
-public showModal:boolean=false;
+
 id:number=0;
 
 @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -33,7 +34,7 @@ ngAfterViewInit() {
 }
 
   
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -45,6 +46,12 @@ ngAfterViewInit() {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  bookdetailview(id:string){
+
+    sessionStorage.setItem("bookid",id);
+    this.router.navigateByUrl('/bookview');
   }
 
 }

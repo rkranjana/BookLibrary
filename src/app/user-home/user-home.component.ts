@@ -11,6 +11,7 @@ export class UserHomeComponent implements OnInit {
   constructor( private router:Router) { }
 
   ngOnInit(): void {
+    sessionStorage.setItem("bookid","0");
   }
 
   addContribution(){

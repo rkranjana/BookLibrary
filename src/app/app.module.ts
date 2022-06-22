@@ -17,7 +17,7 @@ import { AddcontributionComponent } from './addcontribution/addcontribution.comp
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
-import { TestpageComponent } from './testpage/testpage.component';
+import { BookviewComponent } from './bookview/bookview.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +26,7 @@ import { TestpageComponent } from './testpage/testpage.component';
     AddcontributionComponent,
     DashboardComponent,
     LoginComponent,
-    TestpageComponent
+    BookviewComponent
   ],
   imports: [
     BrowserModule,
