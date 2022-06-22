@@ -1,0 +1,14 @@
+<td class="dashboard pull-right" style="color: rgb(17, 37, 44);font-family:cursive;">
+    Search:&nbsp;<input matInput (keyup)="applyFilter($event)" placeholder="Type something" #input style="color: rgb(9, 55, 102);font-family:cursive;">
+</td>
+<div>
+
+ 
+   
+   
+    <mat-paginator [pageSizeOptions]="[2]"
+                   showFirstLastButtons 
+                   aria-label="Select books">
+    </mat-paginator>
+
+  </div>

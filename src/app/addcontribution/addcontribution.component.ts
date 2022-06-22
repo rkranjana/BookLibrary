@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BookcontributionserviceService } from '../bookcontributionservice.service';
 
@@ -10,27 +10,48 @@ import { BookcontributionserviceService } from '../bookcontributionservice.servi
 })
 export class AddcontributionComponent implements OnInit {
 
-  constructor(public service: BookcontributionserviceService,private router:Router) { }
+  
+
+  constructor(public service: BookcontributionserviceService,private router:Router) { 
+  
+  }
 
   ngOnInit(): void {
     this.resetForm();
   }
 
   onSubmit(form:NgForm){
-    alert("success");
-    this.resetForm();
+    console.log(this.service.formDetail)
+    
+    // this.service.postBookDetail().subscribe(
+    //   res => {
+    //   this.resetForm(form);
+    //   this.service.refreshList();
+    //   },
+    //   err => {
+    //   console.log(err);
+    //   }
+    //   )
   }
   resetForm(form?:NgForm){
     if(form!=null)
     form.resetForm();
     this.service.formDetail = {
-      bookid:0,
-      bookname: '',
-      bookcategory: '',
-      bookdetail:'',
-      bookimage: null
-     
-
+      bookId:0,
+      bookName: '',
+      categoryId: null,
+      description:'',
+      author:'',
+      empId:null,
+      empName:'',
+      emailId:'',
+      imageAzureBlobId: '',
+      imageData:null,
+      isApproved:false,
+      approvedDate:'',
+      approvedBy: '',
+      dateInserted: '',
+      isActive: false
     }
   }
 

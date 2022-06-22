@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
@@ -16,6 +17,7 @@ import { AddcontributionComponent } from './addcontribution/addcontribution.comp
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
+import { TestpageComponent } from './testpage/testpage.component';
 
 @NgModule({
   declarations: [
@@ -23,12 +25,14 @@ import { LoginComponent } from './login/login.component';
     UserHomeComponent,
     AddcontributionComponent,
     DashboardComponent,
-    LoginComponent
+    LoginComponent,
+    TestpageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatToolbarModule,

@@ -11,17 +11,18 @@ import { MatTableDataSource } from '@angular/material/table';
  
 export class DashboardComponent implements OnInit {
 
-  bookList:any[]=[{bookid:1,bookname:"Wings of Fire",bookcategory:"Autobiography",bookimage:"/assets/images/libraryimage.jpeg",bookdontd:"Aami Adwaith"},
-  {bookid:2,bookname:"Tenali Raman",bookcategory:"Short story",bookimage:"/assets/images/libraryimage.jpeg",bookdontd:"Aadi Abhi"},
-  {bookid:3,bookname:"Tell Me Why",bookcategory:"Children digest",bookimage:"/assets/images/libraryimage.jpeg", bookdontd:"Sia Sai"},
-  {bookid:4,bookname:"Secret Seven",bookcategory:"Story",bookimage:"/assets/images/libraryimage.jpeg", bookdontd:"Jia Jack"},
-  {bookid:5,bookname:"Current Affairs",bookcategory:"General",bookimage:"/assets/images/libraryimage.jpeg", bookdontd:"Ria Ron"},
-  {bookid:6,bookname:"World of Knowledge",bookcategory:"General",bookimage:"/assets/images/libraryimage.jpeg", bookdontd:"Mia Mathew"}
+  bookList:any[]=[{bookid:1,bookname:"Wings of Fire",bookcategory:"Autobiography",bookimage:"/assets/images/lib01.PNG",bookdontd:"Aami Adwaith",isapproved:0},
+  {bookid:2,bookname:"Tenali Raman",bookcategory:"Short story",bookimage:"/assets/images/book03.PNG",bookdontd:"Aadi Abhi",isapproved:1},
+  {bookid:3,bookname:"Tell Me Why",bookcategory:"Children digest",bookimage:"/assets/images/lib03.PNG", bookdontd:"Sia Sai",isapproved:2},
+  {bookid:4,bookname:"Secret Seven",bookcategory:"Story",bookimage:"/assets/images/lib04.PNG", bookdontd:"Jia Jack",isapproved:0},
+  {bookid:5,bookname:"Current Affairs",bookcategory:"General",bookimage:"/assets/images/bookadd01.PNG", bookdontd:"Ria Ron",isapproved:1},
+  {bookid:6,bookname:"World of Knowledge",bookcategory:"General",bookimage:"/assets/images/bookadd02.PNG", bookdontd:"Mia Mathew",isapproved:2}
 ]
 BookData: BookDisplayData[] =this.bookList
-displayedColumns: string[] = ['bookimage','bookdata','bookview' ];
+displayedColumns: string[] = ['bookimage','bookdata','bookstatus','bookview', ];
 dataSource = new MatTableDataSource<BookDisplayData>(this.BookData);
-
+public showModal:boolean=false;
+id:number=0;
 
 @ViewChild(MatPaginator) paginator: MatPaginator;
 @ViewChild(MatSort) sort: MatSort;
