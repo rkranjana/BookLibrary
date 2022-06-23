@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { BookcontributionserviceService } from '../bookcontributionservice.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,9 +20,14 @@ export class DashboardComponent implements OnInit {
   {bookid:5,bookname:"Current Affairs",bookcategory:"General",bookimage:"/assets/images/bookadd01.PNG", bookdontd:"Ria Ron",isapproved:1},
   {bookid:6,bookname:"World of Knowledge",bookcategory:"General",bookimage:"/assets/images/bookadd02.PNG", bookdontd:"Mia Mathew",isapproved:2}
 ]
-BookData: BookDisplayData[] =this.bookList
+bookdata:any[]=[];
+
+
+dataSource = new MatTableDataSource<BookDisplayData>();
+BookData: BookDisplayData[];
 displayedColumns: string[] = ['bookimage','bookdata','bookstatus','bookview', ];
-dataSource = new MatTableDataSource<BookDisplayData>(this.BookData);
+categorylist:any[]=[];
+
 
 id:number=0;
 
@@ -34,10 +40,24 @@ ngAfterViewInit() {
 }
 
   
-  constructor(private router:Router) { }
+  constructor(private router:Router, public service:BookcontributionserviceService) { }
 
   ngOnInit(): void {
+    this.GetAllCategoryList();
+    this.GetBookList();
+    setTimeout(() => {
+     this.BookData=this.bookdata;
+     this.dataSource = new MatTableDataSource<BookDisplayData>(this.BookData);
+     this.dataSource.paginator = this.paginator;
+     this.dataSource.sort = this.sort;
+     console.log(this.BookData);
+     
+    }, 1000);
+    
+   
   }
+
+  
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -54,12 +74,46 @@ ngAfterViewInit() {
     this.router.navigateByUrl('/bookview');
   }
 
+  GetAllCategoryList() {
+    this.service.GetAllCategory().subscribe(m => {
+    this.categorylist = m;})
+  }
+
+
+  GetBookList() {
+    this.service.GetbookListData().subscribe(m => {
+     
+     this.bookdata = m;
+     for(var bk of this.bookdata){
+       for(var ck of this.categorylist){
+        if(bk.categoryId==ck.categoryId)
+            {
+             bk.categoryId= bk.categoryId.toString();
+             bk.categoryId==ck.categoryName;
+            }        
+       }
+     }
+     console.log(this.bookdata);
+    }
+    )
+  }
+
 }
 export interface BookDisplayData {
-  bookid: number;
-  bookname: string;
-  bookcategory: string;
-  bookimage: string;
-  bookdontd: string;
+  bookId: number;
+  categoryId: number; 
+  bookName: string;
+  description: string;
+  author: string;
+  empId: number;
+  empName: string;
+  emailId: string;
+  imageAzureBlobId: string;
+  imageUploaded:string;
+  isApproved: boolean;
+  approvedDate: any;
+  approvedBy: string;
+  dateInserted: any;
+  isActive: boolean;
 }
 

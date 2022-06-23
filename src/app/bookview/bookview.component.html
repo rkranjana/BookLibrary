@@ -7,10 +7,10 @@
         <!-- panel for image view -->
         <div class="panel panel-default pull-left " style="height:90%;width: 44%; margin-top: 2.5%; margin-left: 4%;">
             <div class="panel-body" style="text-align:center;">
-                <ng-container *ngFor="let bk of bookList">
+                <ng-container *ngFor="let bk of xlist">
                     <ng-container *ngIf="bk.bookId==id">
                         <div class="row">
-                            <img src="{{bk.imageData}}" height="70%" width="95%"> 
+                            <img src="{{bk.imageUploaded}}" height="70%" width="95%"> 
                            
                         </div>
                         <hr>
@@ -31,7 +31,7 @@
          <!-- panel for details view -->
         <div class="panel panel-default pull-right " style="height:90%;width: 44%; margin-top: 2.5%; margin-right: 5%;">
             <div class="panel-body" style="text-align:left;margin-left:5%;">
-                <ng-container *ngFor="let bk of bookList">
+                <ng-container *ngFor="let bk of xlist">
                     <ng-container *ngIf="bk.bookId==id">
                         <div class="row" style="text-align:center;">
                             <h3 style="font-family: 'Acme', sans-serif;font-size:large;"><b>Details of Provider:</b></h3>
@@ -55,13 +55,13 @@
                         </div>
                         <div class="row">
                             <h4 style="font-family:'Yanone Kaffeesatz', sans-serif;font-size:large;">Current Status:
-                                <ng-container *ngIf="bk.isapproved==0"><span style="color:orange;">&ensp;Pending</span></ng-container>
-                                <ng-container *ngIf="bk.isapproved==1"><span style="color:green;">&ensp;Approved</span></ng-container>
-                                <ng-container *ngIf="bk.isapproved==2"><span style="color:red">&ensp;Rejected</span></ng-container>
+                                <ng-container *ngIf="bk.isApproved==false"><span style="color:orange;">&ensp;Pending</span></ng-container>
+                                <ng-container *ngIf="bk.isApproved==true"><span style="color:green;">&ensp;Approved</span></ng-container>
+                                <!-- <ng-container *ngIf="bk.isApproved==2"><span style="color:red">&ensp;Rejected</span></ng-container> -->
                             </h4>
                         </div>
                            <!-- for pending status -->
-                        <ng-container *ngIf="bk.isapproved==0">
+                        <ng-container *ngIf="bk.isApproved==0">
                        
                         <div class="row" style="text-align:center;">
                             <h3 style="font-family: 'Acme', sans-serif;font-size:large;"><b>Update Status:</b></h3>
@@ -88,7 +88,7 @@
                         </ng-container>
                      
                         <!-- for accepted/rejected status -->
-                        <ng-container *ngIf="bk.isapproved==1||bk.isapproved==2">
+                        <ng-container *ngIf="bk.isApproved==true">
                             <div class="row">
                                 <h4 style="font-family:'Yanone Kaffeesatz', sans-serif;font-size:large;">Approved by:&ensp;{{bk.approvedBy}}</h4>
                             </div>
@@ -102,6 +102,7 @@
 
             </div>
         </div>
+
 
     </div>
 </ng-container>

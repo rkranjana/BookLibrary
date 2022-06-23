@@ -7,20 +7,20 @@ export class Bookdata {
 
 }
 export class BookDetails {
-    bookId: number;
-    categoryId: number; 
-    bookName: string;
-    description: string;
-    author: string;
-    empId: number;
-    empName: string;
-    emailId: string;
-    imageAzureBlobId: string;
-    imageData?: HTMLImageElement;
+    bookId: number=0;
+    categoryId: number=0; 
+    bookName: string="";
+    description: string="";
+    author: string="";
+    empId: number=0;
+    empName: string="";
+    emailId: string="";
+    imageBlob: string="";
+    imageUploaded:string="";
     isApproved: boolean=false;
-    approvedDate: any;
-    approvedBy: string;
-    dateInserted: any;
-    isActive: boolean;
+    approvedDate:any="";
+    approvedBy: string="";
+    dateInserted: any="";
+    isActive: boolean=true;
 
 }

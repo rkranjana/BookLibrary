@@ -27,9 +27,7 @@
                             <label style="font-family:'Inconsolata', monospace;font-size:medium;color: rgb(69, 35, 35);"><sup style="color:red;">*&thinsp;</sup>Book Category:&nbsp;&nbsp;</label>
                             <select  class='select-option'name="categoryId" #categoryId="ngModel" [(ngModel)]="service.formDetail.categoryId"  style="height:40px;width:47%;border-color: rgb(71, 67, 21);color:rgb(71, 67, 21) ;" required >
                                 <option class='option' value=null disabled style="color: rgb(9, 55, 102);">Category</option>
-                                <option class='option'  value=1>Novel</option>
-                                <option class='option'  value=2>General</option>
-                                <option class='option'  value=3>Others</option>
+                                <option class='option' *ngFor="let ct of categorylist" value={{ct.categoryId}}>{{ct.categoryName}}</option>
                             </select>
                         </div>
                     </div>
@@ -79,7 +77,7 @@
                     <div class="col">
                         <div class="form-group ">
                             <label style="font-family:'Inconsolata', monospace;font-size:medium;color: rgb(69, 35, 35);"><sup style="color:red;">*&thinsp;</sup>Add image of book:</label>
-                             <input name="imageData" type="file" accept=".jpeg,.PNG" #imageData="ngModel" [(ngModel)]="service.formDetail.imageData"  style="border-color: rgb(71, 67, 21);color:rgb(71, 67, 21) ;margin-left:43%;" required>
+                             <input name="imageUploaded" type="file" accept=".jpeg,.PNG" #imageUploaded="ngModel" [(ngModel)]="service.formDetail.imageUploaded"  style="border-color: rgb(71, 67, 21);color:rgb(71, 67, 21) ;margin-left:43%;" required>
                         </div>
                     </div>
                   </div>

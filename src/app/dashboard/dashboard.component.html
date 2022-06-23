@@ -9,13 +9,13 @@
   
         <ng-container matColumnDef="bookimage">
             <th mat-header-cell *matHeaderCellDef  ></th>
-            <td mat-cell *matCellDef="let bk"> <img src="{{bk.bookimage}}" height="80px" width="200px"> </td>
+            <td mat-cell *matCellDef="let bk"> <img src="{{bk.imageUploaded}}" height="80px" width="200px"> </td>
           </ng-container>
       
       
       <ng-container matColumnDef="bookdata">
         <th mat-header-cell *matHeaderCellDef > </th>
-        <td mat-cell *matCellDef="let bk" style="color:rgb(17, 37, 44);"> <h2 style="font-family:'Acme', sans-serif;font-size: x-large;margin-top:4%;"><b>{{bk.bookname}}</b></h2><h4 style="font-size:larger;font-family:'Yanone Kaffeesatz', sans-serif;color: rgb(0, 0, 0);">Category: {{bk.bookcategory}}<br>Contributer: {{bk.bookdontd}}</h4>
+        <td mat-cell *matCellDef="let bk" style="color:rgb(17, 37, 44);"> <h2 style="font-family:'Acme', sans-serif;font-size: x-large;margin-top:4%;"><b>{{bk.bookName}}</b></h2><h4 style="font-size:larger;font-family:'Yanone Kaffeesatz', sans-serif;color: rgb(0, 0, 0);">Category: {{bk.categoryId}}<br>Contributer: {{bk.empName}}</h4>
          
         </td>
       </ng-container>
@@ -23,16 +23,16 @@
       <ng-container matColumnDef="bookstatus">
         <th mat-header-cell *matHeaderCellDef  ></th>
         <td style="font-family:'Yanone Kaffeesatz', sans-serif;font-size:medium;color: rgb(0, 0, 0);" mat-cell *matCellDef="let bk">
-          <ng-container *ngIf="bk.isapproved==0">Status <br> <h4 style="color:orange;">Pending</h4></ng-container>
-          <ng-container *ngIf="bk.isapproved==1">Status <br><h4 style="color: green;">Approved</h4> </ng-container>
-          <ng-container *ngIf="bk.isapproved==2">Status <br><h4 style="color: red;"> Rejected</h4></ng-container>
+          <ng-container *ngIf="bk.isApproved==false">Status <br> <h4 style="color:orange;">Pending</h4></ng-container>
+          <ng-container *ngIf="bk.isApproved==true">Status <br><h4 style="color: green;">Approved</h4> </ng-container>
+          <!-- <ng-container *ngIf="bk.isapproved==2">Status <br><h4 style="color: red;"> Rejected</h4></ng-container> -->
           </td>
       </ng-container>
   
       <ng-container matColumnDef="bookview">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let bk"> 
-          <a (click)="bookdetailview(bk.bookid)">View <mat-icon style="vertical-align: middle;height: 15px;width: 15px;font-size: 15px">
+          <a (click)="bookdetailview(bk.bookId)">View <mat-icon style="vertical-align: middle;height: 15px;width: 15px;font-size: 15px">
           <span class="material-symbols-outlined">
             fullscreen
             </span>
