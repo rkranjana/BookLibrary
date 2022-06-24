@@ -22,5 +22,19 @@ export class BookDetails {
     approvedBy: string="";
     dateInserted: any="";
     isActive: boolean=true;
+    statementType:string="";
+
+}
+export class BookDetailsInsert {
+    
+    categoryId: number=0; 
+    bookName: string="";
+    description: string="";
+    author: string="";
+    empId: number=0;
+    empName: string="";
+    emailId: string="";
+    statementType:string="";
+   
 
 }

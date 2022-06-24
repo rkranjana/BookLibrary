@@ -10,7 +10,7 @@
                 <ng-container *ngFor="let bk of xlist">
                     <ng-container *ngIf="bk.bookId==id">
                         <div class="row">
-                            <img src="{{bk.imageUploaded}}" height="70%" width="95%"> 
+                            <img  height="305px" width="550px"> 
                            
                         </div>
                         <hr>
@@ -76,7 +76,7 @@
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label style="font-family:'Yanone Kaffeesatz', sans-serif;font-size:large;font-weight: 100;">Approved by:&nbsp;&nbsp;</label>
+                                <label style="font-family:'Yanone Kaffeesatz', sans-serif;font-size:large;font-weight: 100;">Validated by:&nbsp;&nbsp;</label>
                                 <input  type="text" approver="approver" id="approver"  placeholder="Name" [(ngModel)]="approver" style="height: 40px; width: 100%;font-family:'Yanone Kaffeesatz', sans-serif;font-size:large;">
                             </div>
                             
@@ -90,10 +90,10 @@
                         <!-- for accepted/rejected status -->
                         <ng-container *ngIf="bk.isApproved==true">
                             <div class="row">
-                                <h4 style="font-family:'Yanone Kaffeesatz', sans-serif;font-size:large;">Approved by:&ensp;{{bk.approvedBy}}</h4>
+                                <h4 style="font-family:'Yanone Kaffeesatz', sans-serif;font-size:large;">Validated by:&ensp;{{bk.approvedBy}}</h4>
                             </div>
                             <div class="row">
-                                <h4 style="font-family:'Yanone Kaffeesatz', sans-serif;font-size:large;">Approved on:&ensp;{{bk.approvedDate}}</h4>
+                                <h4 style="font-family:'Yanone Kaffeesatz', sans-serif;font-size:large;">Validated on:&ensp;{{bk.approvedDate}}</h4>
                             </div>
                         </ng-container>
 

@@ -13,13 +13,13 @@
 
         <div class="panel-body" style="text-align:center ;">
             <form #form="ngForm"  autocomplete="off" (submit)="onSubmit(form)">
-                <input type="hidden" name="bookId" [value]="service.formDetail.bookId">
+                <!-- <input type="hidden" name="bookId" [value]="service.formDetail.bookId"> -->
                 <div style="height:15px ;"></div>
                   <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label style="font-family:'Inconsolata', monospace;font-size:medium;color: rgb(69, 35, 35);"><sup style="color:red;">*&thinsp;</sup>Name of Book:&nbsp;&nbsp;&nbsp;</label>
-                            <input name="bookName" #bookName="ngModel" [(ngModel)]="service.formDetail.bookName" placeholder="Book Name"  required style="height:40px;width:47%;border-color: none;color:rgb(71, 67, 21) ;">
+                            <input name="bookName" #bookName="ngModel" [(ngModel)]="service.formDetail.bookName" placeholder="Book Name"  style="height:40px;width:47%;border-color: none;color:rgb(71, 67, 21) ;" required>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -37,13 +37,13 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label style="font-family:'Inconsolata', monospace;font-size:medium;color: rgb(69, 35, 35);"><sup style="color:red;">*&thinsp;</sup>Author of Book:&nbsp;</label>
-                            <input name="author" #author="ngModel" [(ngModel)]="service.formDetail.author" placeholder="Name of the Author"  required style="height:40px;width:47%;border-color: none;color:rgb(71, 67, 21) ;">
+                            <input name="author" #author="ngModel" [(ngModel)]="service.formDetail.author" placeholder="Name of the Author"   style="height:40px;width:47%;border-color: none;color:rgb(71, 67, 21) ;" required>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label style="font-family:'Inconsolata', monospace;font-size:medium;color: rgb(69, 35, 35);"><sup style="color:red;">*&thinsp;</sup>Name of User:&nbsp;&nbsp;&nbsp;</label>
-                            <input name="empName" #empName="ngModel" [(ngModel)]="service.formDetail.empName" placeholder="Employee Name"  required style="height:40px;width:47%;border-color: none;color:rgb(71, 67, 21) ;">
+                            <input name="empName" #empName="ngModel" [(ngModel)]="service.formDetail.empName" placeholder="Employee Name"  style="height:40px;width:47%;border-color: none;color:rgb(71, 67, 21) ;" required>
                         </div>
                     </div>
                   </div>
@@ -53,13 +53,13 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label style="font-family:'Inconsolata', monospace;font-size:medium;color: rgb(69, 35, 35);"><sup style="color:red;">*&thinsp;</sup>User Emailid:&nbsp;&nbsp;&nbsp;</label>
-                            <input name="emailId" #emailId="ngModel" [(ngModel)]="service.formDetail.emailId" placeholder="Email Id"  required style="height:40px;width:47%;border-color: none;color:rgb(71, 67, 21) ;">
+                            <input name="emailId" #emailId="ngModel" [(ngModel)]="service.formDetail.emailId" placeholder="Email Id"  style="height:40px;width:47%;border-color: none;color:rgb(71, 67, 21) ;" required>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label style="font-family:'Inconsolata', monospace;font-size:medium;color: rgb(69, 35, 35);"><sup style="color:red;">*&thinsp;</sup>User Id:&emsp;&nbsp;&emsp;&nbsp;&emsp;</label>
-                            <input name="empId" #empId="ngModel" [(ngModel)]="service.formDetail.empId" placeholder="Employee Id"  required style="height:40px;width:47%;border-color: none;color:rgb(71, 67, 21) ;">
+                            <input name="empId" #empId="ngModel" [(ngModel)]="service.formDetail.empId" placeholder="Employee Id"   style="height:40px;width:47%;border-color: none;color:rgb(71, 67, 21) ;" required>
                         </div>
                     </div>
                   </div>
@@ -76,12 +76,12 @@
                   <div class="row">
                     <div class="col">
                         <div class="form-group ">
-                            <label style="font-family:'Inconsolata', monospace;font-size:medium;color: rgb(69, 35, 35);"><sup style="color:red;">*&thinsp;</sup>Add image of book:</label>
-                             <input name="imageUploaded" type="file" accept=".jpeg,.PNG" #imageUploaded="ngModel" [(ngModel)]="service.formDetail.imageUploaded"  style="border-color: rgb(71, 67, 21);color:rgb(71, 67, 21) ;margin-left:43%;" required>
+                            <label style="font-family:'Inconsolata', monospace;font-size:medium;color: rgb(69, 35, 35);">Add image of book:</label>
+                             <input name="imageUploaded" type="file" accept=".jpeg,.PNG" #imageUploaded="ngModel" [(ngModel)]="service.formDetail.imageUploaded"  style="border-color: rgb(71, 67, 21);color:rgb(71, 67, 21) ;margin-left:43%;">
                         </div>
                     </div>
                   </div>
-                  <input type="hidden" name="isApproved" [value]="service.formDetail.isApproved">
+                  
                   <hr>
                   <div class="row">
                     <div class="col pull-left">

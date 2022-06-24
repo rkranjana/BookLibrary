@@ -13,13 +13,10 @@ import { BookcontributionserviceService } from '../bookcontributionservice.servi
  
 export class DashboardComponent implements OnInit {
 
-  bookList:any[]=[{bookid:1,bookname:"Wings of Fire",bookcategory:"Autobiography",bookimage:"/assets/images/lib01.PNG",bookdontd:"Aami Adwaith",isapproved:0},
-  {bookid:2,bookname:"Tenali Raman",bookcategory:"Short story",bookimage:"/assets/images/book03.PNG",bookdontd:"Aadi Abhi",isapproved:1},
-  {bookid:3,bookname:"Tell Me Why",bookcategory:"Children digest",bookimage:"/assets/images/lib03.PNG", bookdontd:"Sia Sai",isapproved:2},
-  {bookid:4,bookname:"Secret Seven",bookcategory:"Story",bookimage:"/assets/images/lib04.PNG", bookdontd:"Jia Jack",isapproved:0},
-  {bookid:5,bookname:"Current Affairs",bookcategory:"General",bookimage:"/assets/images/bookadd01.PNG", bookdontd:"Ria Ron",isapproved:1},
-  {bookid:6,bookname:"World of Knowledge",bookcategory:"General",bookimage:"/assets/images/bookadd02.PNG", bookdontd:"Mia Mathew",isapproved:2}
-]
+bookList:any[]=[{bookId:1,bookName:"Wings of Fire",description:"It is an Autobiography By Dr APJ Abdul Kalam",category:"Autobiography",author:" Dr A P J Abdul Kalam",imageData:"/assets/images/lib01.PNG",empName:"Aami Adwaith",empId:1272,emailId:"aami@gmail.com",dateInserted:"02-06-2022",isapproved:0},
+{bookId:2,bookName:"Tenali Raman",description:"It is a short story book for children",category:"Autobiography",author:" M K Kaiz",imageData:"/assets/images/lib01.PNG",empName:"Sia Sai",empId:1272,emailId:"sai@gmail.com",dateInserted:"03-06-2022",isapproved:1,approvedBy:"Mia Mick",approvedDate:"04-06-2022"}]
+
+
 bookdata:any[]=[];
 
 
@@ -27,6 +24,7 @@ dataSource = new MatTableDataSource<BookDisplayData>();
 BookData: BookDisplayData[];
 displayedColumns: string[] = ['bookimage','bookdata','bookstatus','bookview', ];
 categorylist:any[]=[];
+
 
 
 id:number=0;
@@ -43,16 +41,17 @@ ngAfterViewInit() {
   constructor(private router:Router, public service:BookcontributionserviceService) { }
 
   ngOnInit(): void {
-    this.GetAllCategoryList();
     this.GetBookList();
+    
+    
     setTimeout(() => {
-     this.BookData=this.bookdata;
+     this.BookData=this.bookdata; //this.BookData=this.bookList
      this.dataSource = new MatTableDataSource<BookDisplayData>(this.BookData);
      this.dataSource.paginator = this.paginator;
      this.dataSource.sort = this.sort;
-     console.log(this.BookData);
+     //console.log("dashboard display"+this.BookData);
      
-    }, 1000);
+    }, 1500);
     
    
   }
@@ -74,9 +73,31 @@ ngAfterViewInit() {
     this.router.navigateByUrl('/bookview');
   }
 
+  bookdetaildelete(id:number){
+    console.log(id);
+    if(confirm("Are you sure to delete")){
+      this.service.DeleteSpecificBookData(id).subscribe(m=>{
+        this.GetBookList();
+      setTimeout(() => {
+       this.BookData=this.bookdata; //this.BookData=this.bookList
+       this.dataSource = new MatTableDataSource<BookDisplayData>(this.BookData);
+       this.dataSource.paginator = this.paginator;
+       this.dataSource.sort = this.sort;
+       //console.log("dashboard display"+this.BookData);
+       
+      }, 2000);
+        console.log(m);
+      })
+    }
+   
+    
+  }
+
   GetAllCategoryList() {
     this.service.GetAllCategory().subscribe(m => {
-    this.categorylist = m;})
+    this.categorylist = m;
+  
+  })
   }
 
 
@@ -84,16 +105,8 @@ ngAfterViewInit() {
     this.service.GetbookListData().subscribe(m => {
      
      this.bookdata = m;
-     for(var bk of this.bookdata){
-       for(var ck of this.categorylist){
-        if(bk.categoryId==ck.categoryId)
-            {
-             bk.categoryId= bk.categoryId.toString();
-             bk.categoryId==ck.categoryName;
-            }        
-       }
-     }
-     console.log(this.bookdata);
+     this.GetAllCategoryList();
+     //console.log("http get response"+this.bookdata);
     }
     )
   }
