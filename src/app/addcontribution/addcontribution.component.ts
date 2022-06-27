@@ -135,9 +135,7 @@ export class AddcontributionComponent implements OnInit {
 
   onChange(evt:any){
     let image:any = evt.target.files[0];
-   //console.log(evt.target.files[0])
-    //alert(this.size);
-    //console.log(image);
+    this.size = image.size;
     if(this.size>10000){
       alert("Image size is too large.Cannot be uploaded!!")
       this.service.formDetail.imageUploaded="";
