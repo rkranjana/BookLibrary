@@ -11,6 +11,7 @@ import { BookcontributionserviceService } from '../bookcontributionservice.servi
 })
 export class AddcontributionComponent implements OnInit {
 
+  size:any;
   categorylist:any[]=[];
   insertbookdata:any={  
     bookId:0,
@@ -66,7 +67,7 @@ export class AddcontributionComponent implements OnInit {
 
 
   onSubmit(form:NgForm){
-    console.log(this.service.formDetail);
+   // console.log(this.service.formDetail);
     this.service.formDetail.statementType="Insert"
 
      this.insertbookdata.bookId=0;
@@ -130,5 +131,16 @@ export class AddcontributionComponent implements OnInit {
 
   gouserhome(){
     this.router.navigateByUrl('/userhome');
+  }
+
+  onChange(evt:any){
+    let image:any = evt.target.files[0];
+   //console.log(evt.target.files[0])
+    //alert(this.size);
+    //console.log(image);
+    if(this.size>10000){
+      alert("Image size is too large.Cannot be uploaded!!")
+      this.service.formDetail.imageUploaded="";
+   }
   }
 }
