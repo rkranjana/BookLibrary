@@ -22,6 +22,12 @@ export class BookcontributionserviceService {
    
   }
 
+  postImageDetail(img:FormData){
+  
+    return this.http.post<any>("https://localhost:44302/Image/upload",img) ;
+    
+   }
+
     GetbookListData(){
       return this.http.get<any[]>("https://kitabapi.azurewebsites.net/api/Book/GetList");
     }

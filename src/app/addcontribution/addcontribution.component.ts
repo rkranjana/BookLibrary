@@ -1,7 +1,9 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { Form, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AnonymousCredential, BlobServiceClient, newPipeline } from '@azure/storage-blob';
+import { Observable, Subscriber } from 'rxjs';
 import { BookcontributionserviceService } from '../bookcontributionservice.service';
 
 @Component({
@@ -10,6 +12,10 @@ import { BookcontributionserviceService } from '../bookcontributionservice.servi
   styleUrls: ['./addcontribution.component.css']
 })
 export class AddcontributionComponent implements OnInit {
+
+  myimage!: Observable<any>;
+  base64code!: any
+  imagedata:File;
 
   size:any;
   categorylist:any[]=[];
@@ -79,7 +85,7 @@ export class AddcontributionComponent implements OnInit {
      this.insertbookdata.empName=this.service.formDetail.empName;
      this.insertbookdata.emailId=this.service.formDetail.emailId;
      this.insertbookdata.imageBlob="";
-     this.insertbookdata.imageUploaded="";
+     this.insertbookdata.imageUploaded=this.base64code;
      this.insertbookdata.isApproved=false;
      this.insertbookdata.approvedDate=this.dtipe.transform(Date.now(), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
      this.insertbookdata.approvedBy="";
@@ -87,23 +93,31 @@ export class AddcontributionComponent implements OnInit {
      this.insertbookdata.isActive=false;
      this.insertbookdata.statementType="Insert";
 
-    //this.service.formDetail.isApproved=false;
-    //this.service.formDetail.approvedBy="";
-   // this.service.formDetail.isActive=false;
-   // this.service.formDetail.imageBlob="";
-    //yyyy-MM-dd'T'HH:mm:ss.SSS'Z'
-    //this.service.formDetail.dateInserted=this.dtipe.transform(Date.now(), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-    //this.service.formDetail.approvedDate=this.dtipe.transform(Date.now(), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+  
   
     console.log(this.insertbookdata)
   
     //post method
     this.service.postBookDetail(this.insertbookdata).subscribe(m => 
       { console.log(m);
+        this.azureimageupload();
         alert("Added Book Details Successfully.")
         this.resetForm();
       })
-  
+    
+    }
+
+    azureimageupload(){
+      const fd =new FormData();
+      fd.append('ImageFile',this.imagedata);
+      //fd.append('type',this.imagedatatest.type);
+     // console.log("halo"+fd.get('ImageFile'));
+      this.service.postImageDetail(fd).subscribe(m=>{
+      //console.log(m);
+      this.myimage = null;
+      this.base64code = null;
+
+      })
     }
 
   resetForm(form?:NgForm){
@@ -134,11 +148,54 @@ export class AddcontributionComponent implements OnInit {
   }
 
   onChange(evt:any){
+   
+    this.imagedata=<File>evt.target.files[0];
+    this.myimage = null;
+    this.base64code = null;
+    console.log(evt);
     let image:any = evt.target.files[0];
+    //console.log(evt.target.files[0]);
     this.size = image.size;
     if(this.size>10000){
       alert("Image size is too large.Cannot be uploaded!!")
       this.service.formDetail.imageUploaded="";
-   }
+    }
+   else{
+    //converting to byte array
+    const target = evt.target as HTMLInputElement;
+    const file: File = (target.files as FileList)[0];
+    //console.log(file);
+    this.convertToBase64(file)
+  
+    }
   }
+
+  convertToBase64(file: File) {
+    const observable = new Observable((subscriber: Subscriber<any>) => {
+      this.readFile(file, subscriber);
+    });
+ 
+    observable.subscribe((d) => {
+      console.log(d)
+      this.myimage = d
+      this.base64code = d
+      //console.log(this.base64code);
+    })
+  }
+ 
+  readFile(file: File, subscriber: Subscriber<any>) {
+    const filereader = new FileReader();
+    filereader.readAsDataURL(file);
+ 
+    filereader.onload = () => {
+      subscriber.next(filereader.result);
+      subscriber.complete();
+    };
+    filereader.onerror = (error) => {
+      subscriber.error(error);
+      subscriber.complete();
+    };
+  }
+
+  
 }

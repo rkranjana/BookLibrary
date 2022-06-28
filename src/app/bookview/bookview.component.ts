@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { throwToolbarMixedModesError } from '@angular/material/toolbar';
 import { Router } from '@angular/router';
 import { BookcontributionserviceService } from '../bookcontributionservice.service';
 import { BookDetails } from '../bookdata.model';
@@ -10,6 +11,7 @@ import { BookDetails } from '../bookdata.model';
   styleUrls: ['./bookview.component.css']
 })
 export class BookviewComponent implements OnInit {
+  imagedisplay:string;
   
   updatebookdata:any={  
     bookId:0,
@@ -87,7 +89,7 @@ export class BookviewComponent implements OnInit {
      this.specificbookdata = m;
       //this.book = Object.keys(m)
       this.accessdata(m);
-     console.log(this.book);
+     //console.log(this.book);
     }
     )
   }
@@ -157,11 +159,25 @@ export class BookviewComponent implements OnInit {
         else if (key == "isActive"){
           isActive=value as boolean;
           this.xlist.push({ bookId:bookId, categoryId: categoryId, bookName: bookName,description:description,author:author,empId:empId,empName:empName,emailId:emailId,imageBlob:imageBlob,imageUploaded:imageUploaded,isApproved:isApproved,approvedDate:approvedDate,approvedBy:approvedBy,dateInserted:dateInserted,isActive:isActive})
+          this.defaultimage();
         }
         
 
       })
   
+      }
+
+      defaultimage(){
+        this.imagedisplay="";
+        for(var img of this.xlist ){
+          //console.log(img.imageUploaded)
+          if(img.imageUploaded==""){
+            this.imagedisplay= "/assets/images/no-image-available.png";
+          }
+          else{
+            this.imagedisplay=img.imageUploaded;
+          }
+        }
       }
 
 }

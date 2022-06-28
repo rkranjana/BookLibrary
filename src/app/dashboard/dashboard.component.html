@@ -9,7 +9,7 @@
   
         <ng-container matColumnDef="bookimage">
             <th mat-header-cell *matHeaderCellDef  ></th>
-            <td mat-cell *matCellDef="let bk"> <img  height="80px" width="200px"> </td>
+            <td mat-cell *matCellDef="let bk"> <img [src]="bk.imageUploaded" height="80px" width="200px"> </td>
           </ng-container>
       
       

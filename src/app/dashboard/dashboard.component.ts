@@ -45,6 +45,7 @@ ngAfterViewInit() {
     
     
     setTimeout(() => {
+     this.defaultimage();
      this.BookData=this.bookdata; //this.BookData=this.bookList
      this.dataSource = new MatTableDataSource<BookDisplayData>(this.BookData);
      this.dataSource.paginator = this.paginator;
@@ -79,6 +80,7 @@ ngAfterViewInit() {
       this.service.DeleteSpecificBookData(id).subscribe(m=>{
         this.GetBookList();
       setTimeout(() => {
+       this.defaultimage();
        this.BookData=this.bookdata; //this.BookData=this.bookList
        this.dataSource = new MatTableDataSource<BookDisplayData>(this.BookData);
        this.dataSource.paginator = this.paginator;
@@ -109,6 +111,15 @@ ngAfterViewInit() {
      //console.log("http get response"+this.bookdata);
     }
     )
+  }
+
+  defaultimage(){
+    
+    for(var img of this.bookdata ){
+      if(img.imageUploaded==""){
+        img.imageUploaded= "/assets/images/no-image-available.png";
+      }
+    }
   }
 
 }
