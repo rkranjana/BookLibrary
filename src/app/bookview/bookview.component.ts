@@ -58,7 +58,7 @@ export class BookviewComponent implements OnInit {
      this.updatebookdata.empName=bk.empName;
      this.updatebookdata.emailId=bk.emailId;
      this.updatebookdata.imageBlob="";
-     this.updatebookdata.imageUploaded="";
+     this.updatebookdata.imageUploaded=bk.imageUploaded;
      if(id==1){
       this.updatebookdata.isApproved=true;
      }
@@ -72,7 +72,7 @@ export class BookviewComponent implements OnInit {
    }
    
    this.service.UpdateSpecificBookStatus(this.updatebookdata).subscribe(m => 
-    { console.log(m);
+    { //console.log(m);
       alert("Status Updated")
       var bid=sessionStorage.getItem("bookid")||"0"
       this.GetSpecificBookList(bid);
@@ -170,8 +170,9 @@ export class BookviewComponent implements OnInit {
       defaultimage(){
         this.imagedisplay="";
         for(var img of this.xlist ){
+          //console.log(img.description)
           //console.log(img.imageUploaded)
-          if(img.imageUploaded==""){
+          if(img.imageUploaded==""||img.imageUploaded=="string"||img.imageUploaded==null){
             this.imagedisplay= "/assets/images/no-image-available.png";
           }
           else{

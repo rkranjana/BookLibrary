@@ -24,7 +24,7 @@ export class BookcontributionserviceService {
 
   postImageDetail(img:FormData){
   
-    return this.http.post<any>("https://localhost:44302/Image/upload",img) ;
+    return this.http.post<any>("https://kitabapi.azurewebsites.net/Image/upload",img) ;
     
    }
 

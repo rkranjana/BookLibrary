@@ -95,11 +95,11 @@ export class AddcontributionComponent implements OnInit {
 
   
   
-    console.log(this.insertbookdata)
+    //console.log(this.insertbookdata)
   
     //post method
     this.service.postBookDetail(this.insertbookdata).subscribe(m => 
-      { console.log(m);
+      { //console.log(m);
         this.azureimageupload();
         alert("Added Book Details Successfully.")
         this.resetForm();
@@ -152,7 +152,7 @@ export class AddcontributionComponent implements OnInit {
     this.imagedata=<File>evt.target.files[0];
     this.myimage = null;
     this.base64code = null;
-    console.log(evt);
+    //console.log(evt);
     let image:any = evt.target.files[0];
     //console.log(evt.target.files[0]);
     this.size = image.size;
@@ -176,7 +176,7 @@ export class AddcontributionComponent implements OnInit {
     });
  
     observable.subscribe((d) => {
-      console.log(d)
+      //console.log(d)
       this.myimage = d
       this.base64code = d
       //console.log(this.base64code);

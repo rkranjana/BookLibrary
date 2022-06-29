@@ -116,7 +116,7 @@ ngAfterViewInit() {
   defaultimage(){
     
     for(var img of this.bookdata ){
-      if(img.imageUploaded==""){
+      if(img.imageUploaded==""||img.imageUploaded=="string"||img.imageUploaded==null){
         img.imageUploaded= "/assets/images/no-image-available.png";
       }
     }
