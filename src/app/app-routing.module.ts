@@ -7,9 +7,9 @@ import { UserHomeComponent } from './user-home/user-home.component';
 
 
 
-const routes: Routes = [{path: '',redirectTo:'/userhome',pathMatch:'full'},
+const routes: Routes = [{path: '',redirectTo:'/',pathMatch:'full'},
 
-{path: 'userhome',component: UserHomeComponent},
+{path: '',component: UserHomeComponent},
 {path: 'addcontribution',component: AddcontributionComponent},
 {path: 'login',component: LoginComponent},
 {path: 'bookview',component: BookviewComponent}
