@@ -3,8 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { Form, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AnonymousCredential, BlobServiceClient, newPipeline } from '@azure/storage-blob';
+import { Exception } from '@microsoft/applicationinsights-web';
 import { Observable, Subscriber } from 'rxjs';
 import { BookcontributionserviceService } from '../bookcontributionservice.service';
+import { AppMonitoringService } from '../services/loggingservice.service';
 
 @Component({
   selector: 'app-addcontribution',
@@ -55,7 +57,8 @@ export class AddcontributionComponent implements OnInit {
   //   isActive: boolean=true;
 
 
-  constructor(public service: BookcontributionserviceService,private router:Router,private dtipe: DatePipe) { 
+  constructor(public service: BookcontributionserviceService,private router:Router,private dtipe: DatePipe,
+    public logservice:AppMonitoringService) { 
   
   }
 
@@ -73,6 +76,7 @@ export class AddcontributionComponent implements OnInit {
 
 
   onSubmit(form:NgForm){
+    
    // console.log(this.service.formDetail);
     this.service.formDetail.statementType="Insert"
 
@@ -91,21 +95,33 @@ export class AddcontributionComponent implements OnInit {
      this.insertbookdata.approvedBy="";
      this.insertbookdata.dateInserted=this.dtipe.transform(Date.now(), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
      this.insertbookdata.isActive=false;
-     this.insertbookdata.statementType="Insert";
-
+     this.insertbookdata.statementType="Insert";     
   
   
     //console.log(this.insertbookdata)
   
+    try
+    {
     //post method
     this.service.postBookDetail(this.insertbookdata).subscribe(m => 
       { //console.log(m);
-        this.azureimageupload();
+        try{
+          this.azureimageupload();
+        }
+        catch(ex)
+        {
+        this.logservice.logException(ex,1);
+        }
+        
         alert("Added Book Details Successfully.")
         this.resetForm();
       })
-    
     }
+    catch(ex)
+    {
+      this.logservice.logException(ex,1);
+    }
+  }
 
     azureimageupload(){
       const fd =new FormData();

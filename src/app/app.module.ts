@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
@@ -19,6 +19,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { BookviewComponent } from './bookview/bookview.component';
 import { DatePipe } from '@angular/common';
+import { AppMonitoringService } from './services/loggingservice.service';
+import { ErrorHandlerService } from './services/errorhandler.service';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,7 @@ import { DatePipe } from '@angular/common';
     MatFormFieldModule,
     MatButtonModule
   ],
-  providers: [DatePipe],
+  providers: [AppMonitoringService,{provide:ErrorHandler,useClass: ErrorHandlerService},DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

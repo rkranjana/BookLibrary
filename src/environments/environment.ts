@@ -2,8 +2,12 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+
 export const environment = {
-  production: false
+  production: false,
+  appInsights:{
+    instrumentationKey:"b184050d-a024-4ebb-91b7-65ae67c69a61"
+  }
 };
 
 /*
